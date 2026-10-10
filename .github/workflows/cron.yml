@@ -18,3 +18,12 @@ jobs:
       - name: Echo message
         shell: bash
         run: echo "🚫👑 no kings"
+
+  are-we-good:
+    runs-on: ubuntu-slim
+    needs: [run]
+    if: always()
+    steps:
+      - uses: lowlydba/are-we-good@6b10e5f2697555fbaf7f8f37ce38d4454c954a4c # v1.2.2
+        with:
+          jobs: ${{ toJSON(needs) }}
